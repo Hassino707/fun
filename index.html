@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loading...</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<script>
+// 🔥 WEIGHTED ROTATION (60% F1, 20% F2, 20% F3)
+let paths = [
+  "/f1_trending/",
+  "/f1_trending/",
+  "/f1_trending/",
+  "/f2_reward/",
+  "/f3_security/"
+];
+
+// ✅ GET SUBID
+let subid = new URLSearchParams(window.location.search).get("subid") || "default";
+
+// 🔥 PICK RANDOM FUNNEL
+let path = paths[Math.floor(Math.random() * paths.length)];
+
+// ✅ REDIRECT (BEST METHOD)
+window.location.replace(path + "?subid=" + subid);
+
+</script>
+
+</body>
+</html>
