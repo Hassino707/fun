@@ -1,9 +1,15 @@
 <script>
-let subid = new URLSearchParams(window.location.search).get("subid") || "default";
+// Capture click ID
+let subid = new URLSearchParams(window.location.search).get("subid") || "${SUBID}";
 
+// 1️⃣ Call tracker first
+let img = new Image();
+img.src = "http://sconvtrk.com/conversion/712b8642f6dc777f54107be5876b73fc322cd15c/?visitor_id=" + subid + "&aid=309504";
+
+// 2️⃣ Redirect user to your offer
 window.location.replace("https://omg10.com/4/10792509&subid=f1_" + subid);
 
-// backup (important)
+// Backup redirect
 setTimeout(() => {
   window.location.replace("https://omg10.com/4/10792509&subid=f1_" + subid);
 }, 1500);
