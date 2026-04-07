@@ -1,16 +1,20 @@
 <script>
-let subid = new URLSearchParams(window.location.search).get("subid") || "default";
+(function() {
+  // Capture subid from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const subid = urlParams.get("subid") || "default";
 
-// ✅ FIXED LINK
-let url = "https://omg10.com/4/10792509&subid=f2_" + subid;
+  // Build redirect URL
+  const redirectUrl = `https://omg10.com/4/10792509?subid=f2_${subid}`;
 
-// 🔥 AUTO REDIRECT
-setTimeout(() => {
-  window.location.replace(url);
-}, 1200);
+  // Auto redirect quickly
+  setTimeout(() => {
+    window.location.href = redirectUrl;
+  }, 500); // faster than 1200ms
 
-// 🔥 BUTTON (fallback)
-function go(){
-  window.location.replace(url);
-}
+  // Fallback button function
+  window.go = function() {
+    window.location.href = redirectUrl;
+  };
+})();
 </script>
