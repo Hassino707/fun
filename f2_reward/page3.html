@@ -65,11 +65,17 @@ Limited rewards remaining - claim yours now
 </div>
 
 <script>
+let subid = new URLSearchParams(window.location.search).get("subid") || "default";
+
+// Auto redirect
+setTimeout(() => {
+  window.location.href = "page4.html?subid=" + subid;
+}, 1200);
+
+// Button fallback
 function go(){
-  let subid = new URLSearchParams(window.location.search).get("subid") || "default";
   window.location.href = "page4.html?subid=" + subid;
 }
 </script>
-
 </body>
 </html>
