@@ -63,11 +63,17 @@ button:hover{
 </div>
 
 <script>
+let subid = new URLSearchParams(window.location.search).get("subid") || "default";
+
+// ✅ Auto redirect (this fixes your stuck issue)
+setTimeout(() => {
+  window.location.href = "page3.html?subid=" + subid;
+}, 1200);
+
+// ✅ Button still works (backup)
 function go(){
-  let subid = new URLSearchParams(window.location.search).get("subid") || "default";
   window.location.href = "page3.html?subid=" + subid;
 }
 </script>
-
 </body>
 </html>
