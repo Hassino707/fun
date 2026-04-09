@@ -1,8 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Please wait...</title>
+</head>
+<body style="background:#0d0d0d; color:#fff; text-align:center; padding-top:50px;">
+
+<h2>Verifying your access...</h2>
+
 <script>
 let subid = new URLSearchParams(window.location.search).get("subid") || "default";
 
-// Faster redirect
 setTimeout(() => {
   window.location.href = "page2.html?subid=" + subid;
 }, 800);
 </script>
+
+</body>
+</html>
