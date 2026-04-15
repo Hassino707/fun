@@ -3,44 +3,25 @@
 <head>
 <title>Preparing...</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
-body{
-  margin:0;
-  background:#0d0d0d;
-  font-family:Arial, sans-serif;
-  color:#fff;
-  text-align:center;
-}
-.container{ padding:40px 20px; }
-.box{
-  background:#1a1a1a;
-  padding:25px;
-  border-radius:12px;
-  max-width:350px;
-  margin:auto;
-  box-shadow:0 0 15px rgba(0,0,0,0.5);
-}
-.small{
-  font-size:13px;
-  color:#aaa;
-}
+body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;}
+.container{padding:40px 20px;}
+.box{background:#1a1a1a;padding:25px;border-radius:12px;max-width:350px;margin:auto;}
+.small{font-size:13px;color:#aaa;}
 </style>
 </head>
-
 <body>
 
 <div class="container">
   <div class="box">
-
     <h2>Preparing your experience...</h2>
     <div class="small">Optimizing videos for your device</div>
-
   </div>
 </div>
 
 <script>
-let subid = new URLSearchParams(window.location.search).get("subid") || "default";
+let subid = new URLSearchParams(window.location.search).get("subid");
+if(!subid){ subid = "no_subid"; }
 
 setTimeout(() => {
   window.location.href = "page3.html?subid=" + subid;
