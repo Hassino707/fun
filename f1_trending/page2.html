@@ -20,9 +20,9 @@ body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;
 </div>
 
 <script>
-let subid = new URLSearchParams(window.location.search).get("subid");
+let subid = new URLSearchParams(window.location.search).get("zoneid");
 if(!subid){ subid = "no_subid"; }
-
+  
 setTimeout(() => {
   window.location.href = "page3.html?subid=" + subid;
 }, 900);
