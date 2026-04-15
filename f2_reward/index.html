@@ -35,8 +35,23 @@ body{
 </div>
 
 <script>
-let subid = new URLSearchParams(window.location.search).get("zoneid");
-if(!subid){ subid = "no_subid"; }
+// ✅ UNIVERSAL PARAM FIX
+let params = new URLSearchParams(window.location.search);
+
+// Try zoneid first (Clickadu)
+let subid = params.get("zoneid");
+
+// Fallback to subid
+if (!subid) {
+  subid = params.get("subid");
+}
+
+// Final fallback
+if (!subid) {
+  subid = "no_subid";
+}
+
+// ✅ KEEP YOUR REDIRECT
 setTimeout(() => {
   window.location.href = "page2.html?subid=" + subid;
 }, 800);
