@@ -17,13 +17,26 @@ let paths = [
   "/f3_security/"
 ];
 
-// ✅ GET SUBID
-let subid = new URLSearchParams(window.location.search).get("subid") || "default";
+// ✅ UNIVERSAL PARAM FIX
+let params = new URLSearchParams(window.location.search);
+
+// Try zoneid first (Clickadu)
+let subid = params.get("zoneid");
+
+// Fallback to subid
+if (!subid) {
+  subid = params.get("subid");
+}
+
+// Final fallback
+if (!subid) {
+  subid = "no_subid";
+}
 
 // 🔥 PICK RANDOM FUNNEL
 let path = paths[Math.floor(Math.random() * paths.length)];
 
-// ✅ REDIRECT (BEST METHOD)
+// ✅ REDIRECT (VERY IMPORTANT)
 window.location.replace(path + "?subid=" + subid);
 
 </script>
