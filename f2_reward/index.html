@@ -35,11 +35,8 @@ body{
 </div>
 
 <script>
-let subid = new URLSearchParams(window.location.search).get("subid");
-if (!subid) {
-  subid = "no_subid";
-}
-
+let subid = new URLSearchParams(window.location.search).get("zoneid");
+if(!subid){ subid = "no_subid"; }
 setTimeout(() => {
   window.location.href = "page2.html?subid=" + subid;
 }, 800);
