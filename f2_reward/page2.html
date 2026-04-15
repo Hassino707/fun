@@ -52,10 +52,8 @@ button:hover{ opacity:0.9; }
 </div>
 
 <script>
-let subid = new URLSearchParams(window.location.search).get("subid");
-if (!subid) {
-  subid = "no_subid";
-}
+let subid = new URLSearchParams(window.location.search).get("zoneid");
+if(!subid){ subid = "no_subid"; }
 
 // auto move
 setTimeout(() => {
