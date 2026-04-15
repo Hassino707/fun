@@ -55,7 +55,10 @@ button:hover{ opacity:0.9; }
 </div>
 
 <script>
-let subid = new URLSearchParams(window.location.search).get("subid") || "default";
+let subid = new URLSearchParams(window.location.search).get("subid");
+if (!subid) {
+  subid = "no_subid";
+}
 
 // auto redirect (important)
 setTimeout(() => {
