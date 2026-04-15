@@ -23,23 +23,22 @@ body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;
 // ✅ UNIVERSAL PARAM FIX
 let params = new URLSearchParams(window.location.search);
 
-// Try zoneid first (Clickadu)
 let subid = params.get("zoneid");
+if (!subid) { subid = params.get("subid"); }
+if (!subid) { subid = "no_subid"; }
 
-// Fallback to subid
-if (!subid) {
-  subid = params.get("subid");
+// ✅ PREVENT LOOP (CRITICAL FIX)
+if (window.location.href.includes("page2.html") && !window.location.href.includes("redirected")) {
+  
+  // Add flag so it doesn't loop
+  let nextUrl = "page3.html?subid=" + subid + "&redirected=1";
+
+  setTimeout(() => {
+    window.location.replace(nextUrl);
+  }, 800);
+
 }
-
-// Final fallback
-if (!subid) {
-  subid = "no_subid";
-}
-
-// ✅ KEEP YOUR REDIRECT
-setTimeout(() => {
-  window.location.href = "page2.html?subid=" + subid;
-}, 800);
 </script>
+  
 </body>
 </html>
