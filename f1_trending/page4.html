@@ -18,28 +18,18 @@ body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;
     <div class="small">Please wait...</div>
   </div>
 </div>
-
 <script>
-// ✅ UNIVERSAL PARAM FIX
 let params = new URLSearchParams(window.location.search);
 
-// Try zoneid first (Clickadu)
 let subid = params.get("zoneid");
+if (!subid) { subid = params.get("subid"); }
+if (!subid) { subid = "no_subid"; }
 
-// Fallback to subid
-if (!subid) {
-  subid = params.get("subid");
-}
-
-// Final fallback
-if (!subid) {
-  subid = "no_subid";
-}
-
-// ✅ KEEP YOUR REDIRECT
+// 🔥 FINAL REDIRECT TO MONETAG
 setTimeout(() => {
-  window.location.href = "page2.html?subid=" + subid;
-}, 800);
+  window.location.replace("https://omg10.com/4/10792509?subid=f1_" + subid);
+}, 300);
 </script>
+
 </body>
 </html>
