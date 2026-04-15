@@ -29,21 +29,24 @@ body{
 
 <div class="container">
   <div class="box">
-
     <h2>Processing your reward...</h2>
     <div class="small">Please wait...</div>
-
   </div>
 </div>
 
 <script>
-const subid = new URLSearchParams(window.location.search).get("subid") || "default";
+// ✅ FIXED subid handling
+let subid = new URLSearchParams(window.location.search).get("subid");
+if (!subid) {
+  subid = "no_subid";
+}
 
+// ✅ Correct redirect with subid preserved
 const redirectUrl = "https://omg10.com/4/10792509?subid=f2_" + subid;
 
-// slight delay improves conversion
+// ✅ Better redirect method
 setTimeout(() => {
-  window.location.href = redirectUrl;
+  window.location.replace(redirectUrl);
 }, 300);
 </script>
 
