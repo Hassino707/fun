@@ -27,17 +27,10 @@ let subid = params.get("zoneid");
 if (!subid) { subid = params.get("subid"); }
 if (!subid) { subid = "no_subid"; }
 
-// ✅ PREVENT LOOP (CRITICAL FIX)
-if (window.location.href.includes("page2.html") && !window.location.href.includes("redirected")) {
-  
-  // Add flag so it doesn't loop
-  let nextUrl = "page3.html?subid=" + subid + "&redirected=1";
-
-  setTimeout(() => {
-    window.location.replace(nextUrl);
-  }, 800);
-
-}
+// ✅ SIMPLE & RELIABLE REDIRECT
+setTimeout(() => {
+  window.location.href = "page3.html?subid=" + subid;
+}, 800);
 </script>
   
 </body>
