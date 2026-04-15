@@ -63,8 +63,10 @@ button{
 </div>
 
 <script>
-let subid = new URLSearchParams(window.location.search).get("subid") || "default";
-
+let subid = new URLSearchParams(window.location.search).get("subid");
+if (!subid) {
+  subid = "no_subid";
+}
 let progress = 0;
 let bar = document.getElementById("bar");
 let btn = document.getElementById("btn");
