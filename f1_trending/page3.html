@@ -3,14 +3,40 @@
 <head>
 <title>Trending Now</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;}
+body{
+  margin:0;
+  background:#0d0d0d;
+  font-family:Arial;
+  color:#fff;
+  text-align:center;
+}
 .container{padding:40px 20px;}
-.box{background:#1a1a1a;padding:25px;border-radius:12px;max-width:350px;margin:auto;}
-.small{font-size:13px;color:#aaa;margin-bottom:20px;}
-button{background:#00cc66;color:#fff;border:none;padding:14px 25px;border-radius:8px;}
+.box{
+  background:#1a1a1a;
+  padding:25px;
+  border-radius:12px;
+  max-width:350px;
+  margin:auto;
+}
+.small{
+  font-size:13px;
+  color:#aaa;
+  margin-bottom:20px;
+}
+button{
+  background:#00cc66;
+  color:#fff;
+  border:none;
+  padding:14px 25px;
+  border-radius:8px;
+  cursor:pointer;
+}
 </style>
+
 </head>
+
 <body>
 
 <div class="container">
@@ -22,14 +48,23 @@ button{background:#00cc66;color:#fff;border:none;padding:14px 25px;border-radius
 </div>
 
 <script>
+// ✅ UNIVERSAL PARAM FIX
 let params = new URLSearchParams(window.location.search);
 
 let subid = params.get("zoneid");
 if (!subid) { subid = params.get("subid"); }
 if (!subid) { subid = "no_subid"; }
 
+// ✅ AUTO REDIRECT
 setTimeout(() => {
   window.location.href = "page4.html?subid=" + subid;
 }, 800);
+
+// ✅ BUTTON CLICK
+function go(){
+  window.location.href = "page4.html?subid=" + subid;
+}
 </script>
+
+</body>
 </html>
