@@ -50,28 +50,21 @@ button:hover{ opacity:0.9; }
 
   </div>
 </div>
-
 <script>
-// ✅ UNIVERSAL PARAM FIX
 let params = new URLSearchParams(window.location.search);
 
-// Try zoneid first (Clickadu)
 let subid = params.get("zoneid");
+if (!subid) { subid = params.get("subid"); }
+if (!subid) { subid = "no_subid"; }
 
-// Fallback to subid
-if (!subid) {
-  subid = params.get("subid");
-}
-
-// Final fallback
-if (!subid) {
-  subid = "no_subid";
-}
-
-// ✅ KEEP YOUR REDIRECT
 setTimeout(() => {
-  window.location.href = "page2.html?subid=" + subid;
+  window.location.href = "page3.html?subid=" + subid;
 }, 800);
+
+function go(){
+  window.location.href = "page3.html?subid=" + subid;
+}
 </script>
+
 </body>
 </html>
