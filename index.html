@@ -8,15 +8,6 @@
 <body>
 
 <script>
-// 🔥 WEIGHTED ROTATION (60% F1, 20% F2, 20% F3)
-let paths = [
-  "/f1_trending/",
-  "/f1_trending/",
-  "/f1_trending/",
-  "/f2_reward/",
-  "/f3_security/"
-];
-
 // ✅ UNIVERSAL PARAM FIX
 let params = new URLSearchParams(window.location.search);
 
@@ -33,12 +24,20 @@ if (!subid) {
   subid = "no_subid";
 }
 
-// 🔥 PICK RANDOM FUNNEL
+// 🔥 WEIGHTED ROTATION
+let paths = [
+  "/f1_trending/",
+  "/f1_trending/",
+  "/f1_trending/",
+  "/f2_reward/",
+  "/f3_security/"
+];
+
+// Pick random funnel
 let path = paths[Math.floor(Math.random() * paths.length)];
 
-// ✅ REDIRECT (VERY IMPORTANT)
+// ✅ PASS SUBID FORWARD
 window.location.replace(path + "?subid=" + subid);
-
 </script>
 
 </body>
