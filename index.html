@@ -8,23 +8,18 @@
 <body>
 
 <script>
-// ✅ UNIVERSAL PARAM FIX
+// GET PARAMS
 let params = new URLSearchParams(window.location.search);
 
-// Try zoneid first (Clickadu)
-let subid = params.get("zoneid");
+// GET subid DIRECTLY
+let subid = params.get("subid");
 
-// Fallback to subid
-if (!subid) {
-  subid = params.get("subid");
-}
-
-// Final fallback
+// fallback
 if (!subid) {
   subid = "no_subid";
 }
 
-// 🔥 WEIGHTED ROTATION
+// ROTATION
 let paths = [
   "/f1_trending/",
   "/f1_trending/",
@@ -33,12 +28,10 @@ let paths = [
   "/f3_security/"
 ];
 
-// Pick random funnel
 let path = paths[Math.floor(Math.random() * paths.length)];
 
-// ✅ PASS SUBID FORWARD
+// PASS IT MANUALLY
 window.location.replace(path + "?subid=" + subid);
 </script>
-
 </body>
 </html>
