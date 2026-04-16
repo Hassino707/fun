@@ -19,17 +19,23 @@ body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;
   </div>
 </div>
 <script>
-// ✅ UNIVERSAL PARAM FIX
 let params = new URLSearchParams(window.location.search);
 
 let subid = params.get("zoneid");
 if (!subid) { subid = params.get("subid"); }
 if (!subid) { subid = "no_subid"; }
 
-// 🔥 FINAL REDIRECT TO MONETAG (slightly longer delay for stability)
+let link = "https://omg10.com/4/10792509?subid=f1_" + subid;
+
+// main redirect
 setTimeout(() => {
-  window.location.replace("https://omg10.com/4/10792509?subid=f1_" + subid);
+  window.location.replace(link);
 }, 600);
+
+// backup redirect (in case something blocks first one)
+setTimeout(() => {
+  window.location.href = link;
+}, 1200);
 </script>
   
 </body>
