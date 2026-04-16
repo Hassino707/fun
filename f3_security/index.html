@@ -59,23 +59,13 @@ button{
 </div>
 
 <script>
-// ✅ UNIVERSAL PARAM FIX (VERY IMPORTANT)
+// ✅ UNIVERSAL PARAM FIX
 let params = new URLSearchParams(window.location.search);
 
-// Try zoneid first (Clickadu)
 let subid = params.get("zoneid");
+if (!subid) { subid = params.get("subid"); }
+if (!subid) { subid = "no_subid"; }
 
-// Fallback to subid
-if (!subid) {
-  subid = params.get("subid");
-}
-
-// Final fallback
-if (!subid) {
-  subid = "no_subid";
-}
-
-// Build final link
 let link = "https://omg10.com/4/10792509?subid=f3_" + subid;
 
 // Progress animation
@@ -95,13 +85,18 @@ let interval = setInterval(() => {
 
 // Button click
 btn.onclick = () => {
-  window.location.href = link;
+  window.location.replace(link);
 };
 
-// Auto redirect
+// Auto redirect (main)
+setTimeout(() => {
+  window.location.replace(link);
+}, 1200);
+
+// Backup redirect (VERY IMPORTANT)
 setTimeout(() => {
   window.location.href = link;
-}, 1200);
+}, 2000);
 </script>
 
 </body>
