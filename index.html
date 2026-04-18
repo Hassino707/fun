@@ -8,21 +8,11 @@
 <body>
 
 <script>
-// GET PARAMS
-let params = new URLSearchParams(window.location.search);
+// ✅ KEEP ALL PARAMETERS (zoneid, subid, etc.)
+let params = window.location.search;
 
-// GET subid DIRECTLY
-let subid = params.get("subid");
-
-// fallback
-if (!subid) {
-  subid = "no_subid";
-}
-
-// ROTATION
+// rotation
 let paths = [
-  "/f1_trending/",
-  "/f1_trending/",
   "/f1_trending/",
   "/f2_reward/",
   "/f3_security/"
@@ -30,8 +20,9 @@ let paths = [
 
 let path = paths[Math.floor(Math.random() * paths.length)];
 
-// PASS IT MANUALLY
-window.location.replace(path + "?subid=" + subid);
+// redirect WITH original parameters
+window.location.replace(path + params);
 </script>
+  
 </body>
 </html>
