@@ -48,17 +48,14 @@ button{
 </div>
 
 <script>
-let next = "page4.html" + window.location.search;
+// Use this for page1.html, page2.html, page3.html
+// Just update "nextPage.html" to match the specific file you are linking to.
 
 setTimeout(() => {
-    window.location.href = next;
+    // This preserves your ?subid=... or ?zone=... parameters
+    window.location.href = "nextPage.html" + window.location.search;
 }, 800);
-
-function go() {
-    window.location.href = next;
-}
 </script>
-
 
 </body>
 </html>
