@@ -35,26 +35,19 @@ body{
 </div>
 
 <script>
-// ✅ UNIVERSAL PARAM FIX
-let params = new URLSearchParams(window.location.search);
+// Automatically grab everything after the ? (like ?zoneid=99999)
+// and attach it to the next page.
+let next = "pageX.html" + window.location.search; 
 
-// Try zoneid first (Clickadu)
-let subid = params.get("zoneid");
-
-// Fallback to subid
-if (!subid) {
-  subid = params.get("subid");
-}
-
-// Final fallback
-if (!subid) {
-  subid = "no_subid";
-}
-
-// ✅ KEEP YOUR REDIRECT
+// Auto-redirect after 800ms
 setTimeout(() => {
-  window.location.href = "page2.html?subid=" + subid;
+    window.location.href = next;
 }, 800);
+
+// For your buttons (use onclick="go()")
+function go() {
+    window.location.href = next;
+}
 </script>
 
 </body>
