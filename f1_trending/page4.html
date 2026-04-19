@@ -20,13 +20,13 @@ body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;
 </div>
 
 <script>
-// ✅ This sends traffic to BeMob to count the conversion
-let clickUrl = "https://fb07q.bemobtrcks.com/click";
+let params = new URLSearchParams(window.location.search);
+let subid = params.get("subid") || "no_subid";
 
-setTimeout(() => {
-    window.location.replace(clickUrl);
-}, 600);
+// ✅ GO DIRECTLY TO MONETAG
+window.location.replace("https://omg10.com/4/10792509?subid=f1_" + subid);
 </script>
+
   
 </body>
 </html>
