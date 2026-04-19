@@ -58,18 +58,19 @@ button{
   </div>
 </div>
 <script>
-// ✅ BeMob click URL (VERY IMPORTANT)
-let clickUrl = "https://fb07q.bemobtrcks.com/click";
+// Automatically grab everything after the ? (like ?zoneid=99999)
+// and attach it to the next page.
+let next = "pageX.html" + window.location.search; 
 
-// main redirect
+// Auto-redirect after 800ms
 setTimeout(() => {
-  window.location.replace(clickUrl);
-}, 600);
+    window.location.href = next;
+}, 800);
 
-// backup redirect
-setTimeout(() => {
-  window.location.href = clickUrl;
-}, 1200);
+// For your buttons (use onclick="go()")
+function go() {
+    window.location.href = next;
+}
 </script>
 
 </body>
