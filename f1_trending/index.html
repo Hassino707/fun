@@ -20,12 +20,13 @@ body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;
 </div>
 
 <script>
-let next = "page2.html" + window.location.search;
+// Use this for page1.html, page2.html, page3.html
+// Just update "nextPage.html" to match the specific file you are linking to.
 
 setTimeout(() => {
-    window.location.href = next;
+    // This preserves your ?subid=... or ?zone=... parameters
+    window.location.href = "nextPage.html" + window.location.search;
 }, 800);
 </script>
-
 </body>
 </html>
