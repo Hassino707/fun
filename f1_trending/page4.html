@@ -20,13 +20,19 @@ body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;
 </div>
 
 <script>
+// 1. Get the subid from the URL
 let params = new URLSearchParams(window.location.search);
 let subid = params.get("subid") || "no_subid";
 
-// ✅ GO DIRECTLY TO MONETAG
-window.location.replace("https://omg10.com/4/10792509?subid=f1_" + subid);
-</script>
+// 2. BeMob Click URL
+// We append the subid to the BeMob click URL so BeMob captures it
+let bemobClick = "https://fb07q.bemobtrcks.com/click?subid=f1_" + subid;
 
+// 3. Redirect to BeMob, which then tracks the click and sends user to Monetag
+setTimeout(() => {
+    window.location.replace(bemobClick);
+}, 600);
+</script>
   
 </body>
 </html>
