@@ -20,13 +20,17 @@ body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;
 </div>
 
 <script>
-// 1. Get the subid from the URL (to keep your tracking)
-let params = new URLSearchParams(window.location.search);
-let subid = params.get("subid") || "no_subid";
+// This simply grabs the current URL parameters (like ?subid=99999 or ?zone=123)
+// and adds them directly to your Monetag link.
+// If there is no subid, it just goes to the link clean.
 
-// 2. Go DIRECTLY to Monetag (This is the fastest method)
-// This preserves your subid for Monetag reporting
-window.location.replace("https://omg10.com/4/10792509?subid=f1_" + subid);
+setTimeout(() => {
+    let baseUrl = "https://omg10.com/4/10792509";
+    // window.location.search contains the ? and everything after it
+    let finalUrl = baseUrl + window.location.search;
+    
+    window.location.replace(finalUrl);
+}, 800);
 </script>
   
 </body>
