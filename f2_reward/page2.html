@@ -51,18 +51,18 @@ button:hover{ opacity:0.9; }
   </div>
 </div>
 <script>
-let params = new URLSearchParams(window.location.search);
+// Automatically grab everything after the ? (like ?zoneid=99999)
+// and attach it to the next page.
+let next = "pageX.html" + window.location.search; 
 
-let subid = params.get("zoneid");
-if (!subid) { subid = params.get("subid"); }
-if (!subid) { subid = "no_subid"; }
-
+// Auto-redirect after 800ms
 setTimeout(() => {
-  window.location.href = "page3.html?subid=" + subid;
+    window.location.href = next;
 }, 800);
 
-function go(){
-  window.location.href = "page3.html?subid=" + subid;
+// For your buttons (use onclick="go()")
+function go() {
+    window.location.href = next;
 }
 </script>
 
