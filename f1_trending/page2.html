@@ -20,18 +20,19 @@ body{margin:0;background:#0d0d0d;font-family:Arial;color:#fff;text-align:center;
 </div>
 
 <script>
-// ✅ UNIVERSAL PARAM FIX
-let params = new URLSearchParams(window.location.search);
+// Automatically grab everything after the ? (like ?zoneid=99999)
+// and attach it to the next page.
+let next = "pageX.html" + window.location.search; 
 
-let subid = params.get("zoneid");
-if (!subid) { subid = params.get("subid"); }
-if (!subid) { subid = "no_subid"; }
-
-// ✅ SIMPLE & RELIABLE REDIRECT
+// Auto-redirect after 800ms
 setTimeout(() => {
-  window.location.href = "page3.html?subid=" + subid;
+    window.location.href = next;
 }, 800);
+
+// For your buttons (use onclick="go()")
+function go() {
+    window.location.href = next;
+}
 </script>
-  
 </body>
 </html>
