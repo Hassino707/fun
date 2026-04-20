@@ -3,66 +3,35 @@
 <head>
 <title>Congratulations</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
-body{
-  margin:0;
-  background:#0d0d0d;
-  font-family:Arial;
-  color:#fff;
-  text-align:center;
-}
+body{ margin:0; background:#0d0d0d; font-family:Arial; color:#fff; text-align:center; }
 .container{ padding:40px 20px; }
-.box{
-  background:#1a1a1a;
-  padding:25px;
-  border-radius:12px;
-  max-width:350px;
-  margin:auto;
-  box-shadow:0 0 15px rgba(0,0,0,0.5);
-}
-.small{
-  color:#aaa;
-  font-size:13px;
-  margin-bottom:20px;
-}
-button{
-  background: linear-gradient(45deg, #00ff99, #00cc66);
-  color:#fff;
-  border:none;
-  padding:14px 25px;
-  border-radius:8px;
-  cursor:pointer;
-}
+.box{ background:#1a1a1a; padding:25px; border-radius:12px; max-width:350px; margin:auto; box-shadow:0 0 15px rgba(0,0,0,0.5); }
+.small{ color:#aaa; font-size:13px; margin-bottom:20px; }
+button{ background: linear-gradient(45deg, #00ff99, #00cc66); color:#fff; border:none; padding:14px 25px; border-radius:8px; cursor:pointer; }
 button:hover{ opacity:0.9; }
 </style>
 </head>
-
 <body>
 
 <div class="container">
   <div class="box">
-
     <h2>🎁 You’ve been selected</h2>
-
-    <div class="small">
-      Limited rewards remaining — claim yours now
-    </div>
-
+    <div class="small">Limited rewards remaining — claim yours now</div>
     <button onclick="go()">🎯 CLAIM NOW</button>
-
   </div>
 </div>
 
 <script>
-// Use this for page1.html, page2.html, page3.html
-// Just update "nextPage.html" to match the specific file you are linking to.
+function go() {
+    window.location.replace("page4.html" + window.location.search);
+}
 
+// Auto redirect
 setTimeout(() => {
-    // This preserves your ?subid=... or ?zone=... parameters
-    window.location.href = "page4.html" + window.location.search;
-}, 800);
+    window.location.replace("page4.html" + window.location.search);
+}, 5000);
 </script>
-  
+
 </body>
 </html>
