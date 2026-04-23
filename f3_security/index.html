@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <title>Optimizing...</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,10 +81,6 @@ button:disabled{
 </div>
 
 <script>
-
-// 🔥 YOUR MONETAG LINK
-let baseUrl = "https://omg10.com/4/10792509";
-
 // Elements
 let progress = 0;
 let bar = document.getElementById("bar");
@@ -103,8 +98,12 @@ let interval = setInterval(() => {
   }
 }, 300);
 
-// Redirect function (keeps tracking params)
+// Redirect function
 function go(){
+  // This sends the user through your BeMob tracker for accurate counting
+  let baseUrl = "https://fb07q.bemobtrcks.com/click";
+  
+  // This ensures your subid/zoneid data travels with the user
   let finalUrl = baseUrl + window.location.search;
   window.location.replace(finalUrl);
 }
