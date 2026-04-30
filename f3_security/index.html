@@ -1,64 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Optimizing...</title>
+<title>Connecting...</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body{
   margin:0;
   background:#0d0d0d;
-  font-family:Arial, sans-serif;
   color:#fff;
+  font-family:Arial;
   text-align:center;
 }
-
 .container{ padding:40px 20px; }
-
 .box{
   background:#1a1a1a;
   padding:25px;
   border-radius:12px;
   max-width:350px;
   margin:auto;
-  box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
-
-.small{
-  font-size:13px;
-  color:#aaa;
-  margin-bottom:15px;
-}
+.small{ color:#aaa; font-size:13px; margin-bottom:15px; }
 
 .progress-bar{
   width:100%;
   height:8px;
   background:#333;
-  margin:20px 0;
   border-radius:5px;
-  overflow:hidden;
+  margin-top:15px;
 }
 
 .progress{
   height:100%;
   width:0%;
-  background:#00ff99;
-  transition: width 0.3s;
-}
-
-button{
-  background: linear-gradient(45deg, #00ff99, #00cc66);
-  color:#fff;
-  border:none;
-  padding:14px 25px;
-  border-radius:8px;
-  cursor:pointer;
-  width:100%;
-  font-weight:bold;
-}
-
-button:disabled{
-  opacity:0.6;
+  background:#00cc66;
+  transition: width 0.2s;
 }
 </style>
 </head>
@@ -67,53 +42,33 @@ button:disabled{
 
 <div class="container">
   <div class="box">
-
-    <h2>Optimizing your connection...</h2>
-    <div class="small">Please wait while we prepare your content</div>
+    <h2>🔐 Connecting to secure stream...</h2>
+    <div class="small">Please wait while we verify your access</div>
 
     <div class="progress-bar">
       <div class="progress" id="bar"></div>
     </div>
-
-    <button id="btn" disabled>PLEASE WAIT...</button>
-
   </div>
 </div>
 
 <script>
-// Elements
-let progress = 0;
 let bar = document.getElementById("bar");
-let btn = document.getElementById("btn");
+let progress = 0;
 
-// Progress animation
 let interval = setInterval(() => {
-  progress += 20;
+  progress += 50;
   bar.style.width = progress + "%";
 
   if(progress >= 100){
     clearInterval(interval);
-    btn.disabled = false;
-    btn.innerText = "CONTINUE";
+    go();
   }
-}, 300);
+}, 200);
 
-// Redirect function
 function go(){
-  // This sends the user through your BeMob tracker for accurate counting
   let baseUrl = "https://fb07q.bemobtrcks.com/click";
-  
-  // This ensures your subid/zoneid data travels with the user
-  let finalUrl = baseUrl + window.location.search;
-  window.location.replace(finalUrl);
+  window.location.replace(baseUrl + window.location.search);
 }
-
-// Button click
-btn.addEventListener("click", go);
-
-// Auto redirect after progress completes
-setTimeout(go, 5000);
-
 </script>
 
 </body>
