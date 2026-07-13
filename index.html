@@ -3,328 +3,608 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Portal</title>
+    <title>Jumia Nigeria | E-Commerce, Electronics, Fashion & More</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --success: #16a34a;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --border: #e2e8f0;
+            --jumia-orange: #f68b1e;
+            --jumia-orange-hover: #e07b16;
+            --jumia-dark: #282828;
+            --jumia-bg: #f5f5f5;
+            --gray-text: #757575;
+            --border-color: #ededed;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
-            padding: 20px;
+            background-color: var(--jumia-bg);
+            color: var(--jumia-dark);
+            font-size: 14px;
+        }
+
+        /* Top Bar & Header */
+        .top-banner {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 4px 0;
+            font-size: 12px;
+        }
+        .top-banner a {
+            color: var(--jumia-orange);
+            text-decoration: none;
+            font-weight: bold;
         }
 
         header {
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 4px -4px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--jumia-dark);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--jumia-orange);
+        }
+
+        .search-bar {
+            flex: 1;
+            margin: 0 30px;
+            display: flex;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #b3b3b3;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: var(--jumia-orange);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .search-bar button:hover {
+            background-color: var(--jumia-orange-hover);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .header-link {
+            text-decoration: none;
+            color: var(--jumia-dark);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .cart-icon-wrap {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background-color: var(--jumia-orange);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* Layout Grid */
+        .main-layout {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 16px;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: white;
+            border-radius: 4px;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--jumia-dark);
+            text-decoration: none;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .category-item:hover {
+            color: var(--jumia-orange);
+            background-color: #fafafa;
+        }
+
+        /* Flash Sale Banner Block */
+        .flash-sale-header {
+            background-color: #e61601;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 4px 4px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
+        .countdown {
+            background: rgba(0,0,0,0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: monospace;
         }
 
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
+        /* Products Display Area */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        /* Products Grid */
+        .products-section {
+            background-color: white;
+            border-radius: 0 0 4px 4px;
+            padding: 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+            gap: 12px;
         }
 
         .product-card {
             background: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
+            border-radius: 4px;
+            padding: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .discount-tag {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: #feebd4;
+            color: var(--jumia-orange);
+            padding: 2px 4px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 2px;
         }
 
         .product-card img {
-            max-width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            background: #eee;
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            color: var(--jumia-dark);
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 36px;
+            line-height: 18px;
         }
 
         .product-price {
+            font-size: 16px;
             font-weight: bold;
-            color: var(--primary);
-            margin: 10px 0;
+            margin-bottom: 2px;
         }
 
-        /* Buttons */
-        button {
-            background-color: var(--primary);
+        .old-price {
+            font-size: 12px;
+            color: var(--gray-text);
+            text-decoration: line-through;
+            margin-bottom: 8px;
+        }
+
+        .btn-add {
+            background-color: var(--jumia-orange);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
             width: 100%;
-            transition: background 0.2s;
+            padding: 10px 0;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            box-shadow: 0 4px 8px rgba(246, 139, 30, 0.2);
         }
 
-        button:hover { background-color: var(--primary-hover); }
-        .btn-success { background-color: var(--success); }
-        .btn-success:hover { background: #15803d; }
+        .btn-add:hover {
+            background-color: var(--jumia-orange-hover);
+        }
 
-        /* Sidebar Panels */
+        /* Bottom Split Section (Cart and Checkout Forms) */
+        .checkout-grid {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 16px;
+        }
+
         .panel {
             background: white;
-            border-radius: 8px;
+            border-radius: 4px;
             padding: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        .panel h3 {
+        .panel-title {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
             margin-bottom: 15px;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 5px;
         }
 
-        .cart-item, .card-item {
+        .cart-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* Forms */
         .form-group {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
-
         .form-group label {
             display: block;
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-            font-weight: 500;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
         }
-
-        input {
+        .form-group input {
             width: 100%;
-            padding: 8px;
-            border: 1px solid var(--border);
+            padding: 10px;
+            border: 1px solid #ccc;
             border-radius: 4px;
+            outline: none;
         }
-
-        .inline-inputs {
+        .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
+        }
+
+        .btn-pay {
+            background-color: #16a34a;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        .btn-pay:hover { background-color: #118039; }
+
+        .saved-card-badge {
+            background: #f1fcf4;
+            border: 1px solid #bbf7d0;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .checkout-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Jumia Top Announcement bar -->
+    <div class="top-banner">
+        Free Delivery on items marked with Jumia Express! <a href="#">Shop Now</a>
+    </div>
+
+    <!-- Main Navigation Header -->
     <header>
-        <h2>⚡ E-Commerce Portal</h2>
-        <div>Items in Cart: <strong id="cart-count">0</strong></div>
-    </header>
-
-    <div class="container">
-        <div>
-            <h3 style="margin-bottom: 15px;">Products</h3>
-            <div class="products-grid" id="products-container">
-                </div>
-        </div>
-
-        <div>
-            <div class="panel">
-                <h3>Your Cart</h3>
-                <div id="cart-items-list">
-                    <p style="color: #777; text-align: center;">Cart is empty</p>
-                </div>
-                <div style="margin-top: 15px; font-weight: bold; text-align: right;" id="cart-total">
-                    Total: $0.00
-                </div>
+        <div class="header-container">
+            <a href="#" class="logo">JU<span>MIA</span></a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search products, brands and categories...">
+                <button>Search</button>
             </div>
 
-            <div class="panel">
-                <h3>Add Your Card</h3>
-                <form id="card-form">
-                    <div class="form-group">
-                        <label>Cardholder Name</label>
-                        <input type="text" id="card-name" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Card Number</label>
-                        <input type="text" id="card-number" placeholder="4111 2222 3333 4444" maxlength="19" required>
-                    </div>
-                    <div class="inline-inputs">
-                        <div class="form-group">
-                            <label>Expiry (MM/YY)</label>
-                            <input type="text" id="card-expiry" placeholder="12/28" maxlength="5" required>
-                        </div>
-                        <div class="form-group">
-                            <label>CVC</label>
-                            <input type="password" id="card-cvc" placeholder="***" maxlength="3" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn-success">Click to Add Your Card</button>
-                </form>
+            <div class="header-actions">
+                <a href="#payment-center" class="header-link">👤 Account</a>
+                <a href="#cart-center" class="header-link cart-icon-wrap">
+                    🛒 Cart
+                    <span class="cart-count" id="badge-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
 
-                <h4 style="margin-top: 20px; margin-bottom: 10px; font-size: 0.9rem;">Saved Cards</h4>
-                <div id="saved-cards-list">
-                    <p style="color: #777; font-size: 0.85rem;">No cards saved yet.</p>
+    <!-- Mid Section: Category selection and main storefront items -->
+    <main class="main-layout">
+        <!-- Left Side: Classic Jumia Category Panel -->
+        <aside class="sidebar">
+            <a href="#" class="category-item">🍎 Supermarket</a>
+            <a href="#" class="category-item">🔌 Electronics</a>
+            <a href="#" class="category-item">📱 Phones & Tablets</a>
+            <a href="#" class="category-item">💻 Computing</a>
+            <a href="#" class="category-item">🏠 Home & Office</a>
+            <a href="#" class="category-item">👕 Fashion</a>
+            <a href="#" class="category-item">🎮 Gaming</a>
+            <a href="#" class="category-item">⚽ Sporting Goods</a>
+            <a href="#" class="category-item">👶 Baby Products</a>
+        </aside>
+
+        <!-- Right Side: Flash Sale Window Grid -->
+        <div class="content-area">
+            <div>
+                <div class="flash-sale-header">
+                    <span>⚡ Top Deals / Flash Sales</span>
+                    <span class="countdown">Time Left: 04h : 21m : 11s</span>
+                </div>
+                <div class="products-section">
+                    <div class="products-grid" id="catalog-target">
+                        <!-- Populated by JavaScript loop -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Section: Transaction Management System -->
+    <div class="checkout-grid">
+        <!-- Left Item Block: Cart Content Tracker -->
+        <div class="panel" id="cart-center">
+            <div class="panel-title">Your Cart (<span id="cart-item-qty">0</span> Items)</div>
+            <div id="cart-items-container">
+                <p style="text-align: center; color: var(--gray-text); padding: 20px;">Your shopping cart is empty.</p>
+            </div>
+            <div style="text-align: right; margin-top: 20px; font-size: 18px; font-weight: bold;">
+                Total: <span id="cart-grand-total" style="color: var(--jumia-orange);">₦0</span>
+            </div>
+        </div>
+
+        <!-- Right Item Block: Secure Vault Form Entry -->
+        <div class="panel" id="payment-center">
+            <div class="panel-title">Add Payment Card</div>
+            <form id="billing-card-form">
+                <div class="form-group">
+                    <label>Cardholder Full Name</label>
+                    <input type="text" id="holder-name" placeholder="E.g. Chidi Kola" required>
+                </div>
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" id="card-num" placeholder="XXXX XXXX XXXX 4123" maxlength="19" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Expiry Date</label>
+                        <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="password" id="cvv-code" placeholder="***" maxlength="3" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-pay">Click to Add Your Card</button>
+            </form>
+
+            <div style="margin-top: 25px;">
+                <div style="font-weight: bold; font-size: 12px; text-transform: uppercase; margin-bottom: 10px;">Saved Cards Profile</div>
+                <div id="saved-cards-container">
+                    <p style="color: var(--gray-text); font-size: 13px;">No cards stored natively on this device.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Mock Catalog Data
-        const PRODUCTS = [
-            { id: 1, name: "Wireless Headphones", price: 89.99, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&auto=format&fit=crop&q=60" },
-            { id: 2, name: "Smart Watch", price: 199.99, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&auto=format&fit=crop&q=60" },
-            { id: 3, name: "Mechanical Keyboard", price: 124.50, img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=200&auto=format&fit=crop&q=60" }
+        // Large-scale Product Array simulation mimicking popular items on Jumia Nigeria
+        const NIGERIA_PRODUCTS = [
+            { id: 10, name: "Infinix Hot 40i 6.56\" 4GB RAM/128GB ROM - Black", price: 124000, oldPrice: 145000, disc: "14%", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&auto=format&fit=crop&q=60" },
+            { id: 11, name: "Oraimo FreePods 4 True Wireless Earbuds - Heavy Bass", price: 34500, oldPrice: 45000, disc: "23%", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=200&auto=format&fit=crop&q=60" },
+            { id: 12, name: "Binatone 16\" Stand Fan With Timer - Durable Motor", price: 42000, oldPrice: 49900, disc: "15%", img: "https://images.unsplash.com/photo-1618945533008-0910024688e7?w=200&auto=format&fit=crop&q=60" },
+            { id: 13, name: "Adidas Running Men's Sneaker Lightweight - Core Black", price: 68000, oldPrice: 90000, disc: "24%", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&auto=format&fit=crop&q=60" },
+            { id: 14, name: "Defacto Men Slim Fit Knitwear Sweater V-Neck - Grey", price: 15400, oldPrice: 22000, disc: "30%", img: "https://images.unsplash.com/photo-1614975058789-41316d0e2e9c?w=200&auto=format&fit=crop&q=60" },
+            { id: 15, name: "Silver Crest 2L Extra Large Commercial Blender 3000W", price: 28900, oldPrice: 35000, disc: "17%", img: "https://images.unsplash.com/photo-1578643463396-0997cb5328c1?w=200&auto=format&fit=crop&q=60" },
+            { id: 16, name: "Samsung Galaxy A15 6.5\" 6GB RAM/128GB ROM - Blue", price: 215000, oldPrice: 240000, disc: "10%", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=200&auto=format&fit=crop&q=60" },
+            { id: 17, name: "Asus VivoBook Intel Core i3 8GB RAM/512GB SSD Win 11", price: 485000, oldPrice: 530000, disc: "8%", img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=200&auto=format&fit=crop&q=60" }
         ];
 
-        // State Engines (Falls back to localStorage or local arrays)
-        let cart = JSON.parse(localStorage.getItem('local_cart')) || [];
-        let cards = JSON.parse(localStorage.getItem('local_cards')) || [];
+        // State Controllers leveraging localStorage
+        let activeCart = JSON.parse(localStorage.getItem('jumia_cart')) || [];
+        let storedCards = JSON.parse(localStorage.getItem('jumia_cards')) || [];
 
-        // Render the Catalog
-        function initCatalog() {
-            const container = document.getElementById('products-container');
-            container.innerHTML = PRODUCTS.map(prod => `
+        // Build Jumia Marketplace Grid Layout
+        function displayCatalog() {
+            const grid = document.getElementById('catalog-target');
+            grid.innerHTML = NIGERIA_PRODUCTS.map(p => `
                 <div class="product-card">
-                    <img src="${prod.img}" alt="${prod.name}">
-                    <h4>${prod.name}</h4>
-                    <p class="product-price">$${prod.price.toFixed(2)}</p>
-                    <button onclick="addToCart(${prod.id})">Add to Cart</button>
+                    <span class="discount-tag">-${p.disc}</span>
+                    <img src="${p.img}" alt="${p.name}">
+                    <div class="product-title">${p.name}</div>
+                    <div class="product-price">₦ ${p.price.toLocaleString()}</div>
+                    <div class="old-price">₦ ${p.oldPrice.toLocaleString()}</div>
+                    <button class="btn-add" onclick="pushToCart(${p.id})">Add to Cart</button>
                 </div>
             `).join('');
         }
 
-        // Add to Cart Logic
-        function addToCart(productId) {
-            const product = PRODUCTS.find(p => p.id === productId);
-            const dynamicCartItem = cart.find(item => item.id === productId);
+        // Add item action
+        function pushToCart(productId) {
+            const itemMatch = NIGERIA_PRODUCTS.find(p => p.id === productId);
+            const clearCartItem = activeCart.find(c => c.id === productId);
 
-            if (dynamicCartItem) {
-                dynamicCartItem.quantity += 1;
+            if (clearCartItem) {
+                clearCartItem.units += 1;
             } else {
-                cart.push({ ...product, quantity: 1 });
+                activeCart.push({ ...itemMatch, units: 1 });
             }
-            updateCartUI();
+            refreshCartUI();
         }
 
-        // Update Cart Interface
-        function updateCartUI() {
-            localStorage.setItem('local_cart', JSON.stringify(cart));
+        // Refresh Cart and calculations
+        function refreshCartUI() {
+            localStorage.setItem('jumia_cart', JSON.stringify(activeCart));
             
-            // Total Counter Element
-            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cart-count').innerText = totalCount;
+            const totalUnits = activeCart.reduce((acc, current) => acc + current.units, 0);
+            document.getElementById('badge-count').innerText = totalUnits;
+            document.getElementById('cart-item-qty').innerText = totalUnits;
 
-            const listElement = document.getElementById('cart-items-list');
-            if (cart.length === 0) {
-                listElement.innerHTML = `<p style="color: #777; text-align: center;">Cart is empty</p>`;
-                document.getElementById('cart-total').innerText = "Total: $0.00";
+            const box = document.getElementById('cart-items-container');
+            if(activeCart.length === 0) {
+                box.innerHTML = `<p style="text-align: center; color: var(--gray-text); padding: 20px;">Your shopping cart is empty.</p>`;
+                document.getElementById('cart-grand-total').innerText = "₦0";
                 return;
             }
 
-            let grandTotal = 0;
-            listElement.innerHTML = cart.map(item => {
-                const itemTotal = item.price * item.quantity;
-                grandTotal += itemTotal;
+            let computedCost = 0;
+            box.innerHTML = activeCart.map(item => {
+                const subTotal = item.price * item.units;
+                computedCost += subTotal;
                 return `
-                    <div class="cart-item">
-                        <div>
-                            <div><strong>${item.name}</strong></div>
-                            <small style="color:#666">$${item.price.toFixed(2)} x ${item.quantity}</small>
+                    <div class="cart-row">
+                        <div style="max-width: 70%;">
+                            <div style="font-weight:500; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">${item.name}</div>
+                            <small style="color: var(--gray-text);">Qty: ${item.units} @ ₦${item.price.toLocaleString()}</small>
                         </div>
-                        <div>$${itemTotal.toFixed(2)}</div>
+                        <div style="font-weight: bold;">₦ ${subTotal.toLocaleString()}</div>
                     </div>
                 `;
             }).join('');
 
-            document.getElementById('cart-total').innerText = `Total: $${grandTotal.toFixed(2)}`;
+            document.getElementById('cart-grand-total').innerText = `₦ ${computedCost.toLocaleString()}`;
         }
 
-        // Add Card Form Submission Logic
-        document.getElementById('card-form').addEventListener('submit', function(e) {
+        // Add Card profile processing
+        document.getElementById('billing-card-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const rawNumber = document.getElementById('card-number').value;
-            const cardName = document.getElementById('card-name').value;
-            const cardExpiry = document.getElementById('card-expiry').value;
-            
-            // Masking card number safely down to last 4 details
-            const cleanNumber = rawNumber.replace(/\s+/g, '');
-            const lastFour = cleanNumber.slice(-4) || "4444";
-            
-            const newCard = {
+
+            const name = document.getElementById('holder-name').value;
+            const fullNum = document.getElementById('card-num').value.replace(/\s+/g, '');
+            const exp = document.getElementById('expiry-date').value;
+
+            const slicedDigits = fullNum.slice(-4) || "0000";
+
+            const payload = {
                 id: Date.now(),
-                name: cardName,
-                lastFour: lastFour,
-                expiry: cardExpiry
+                holder: name,
+                digits: slicedDigits,
+                expiry: exp
             };
 
-            cards.push(newCard);
-            localStorage.setItem('local_cards', JSON.stringify(cards));
+            storedCards.push(payload);
+            localStorage.setItem('jumia_cards', JSON.stringify(storedCards));
             
-            // Reset fields
             this.reset();
-            updateCardsUI();
-            alert("Card securely linked locally!");
+            refreshCardsUI();
+            alert("Card setup authorized successfully.");
         });
 
-        // Update Cards List UI
-        function updateCardsUI() {
-            const list = document.getElementById('saved-cards-list');
-            if(cards.length === 0) {
-                list.innerHTML = `<p style="color: #777; font-size: 0.85rem;">No cards saved yet.</p>`;
+        // Sync local card elements
+        function refreshCardsUI() {
+            const frame = document.getElementById('saved-cards-container');
+            if (storedCards.length === 0) {
+                frame.innerHTML = `<p style="color: var(--gray-text); font-size: 13px;">No cards stored natively on this device.</p>`;
                 return;
             }
 
-            list.innerHTML = cards.map(card => `
-                <div class="card-item" style="font-size: 0.85rem;">
-                    <div>💳 <strong>Visa ending in ${card.lastFour}</strong><br><small style="color:#666">${card.name} | Exp: ${card.expiry}</small></div>
-                    <span style="color: var(--success); font-size: 0.75rem; font-weight: bold;">Active</span>
+            frame.innerHTML = storedCards.map(c => `
+                <div class="saved-card-badge">
+                    <div>
+                        <strong>💳 Visa / Mastercard (Ending in ${c.digits})</strong><br>
+                        <small style="color: var(--gray-text);">${c.holder} | Exp: ${c.expiry}</small>
+                    </div>
+                    <span style="color:#16a34a; font-weight:bold; font-size:11px; text-transform:uppercase;">Verified</span>
                 </div>
             `).join('');
         }
 
-        // Render everything on startup
-        initCatalog();
-        updateCartUI();
-        updateCardsUI();
+        // Initialize elements
+        displayCatalog();
+        refreshCartUI();
+        refreshCardsUI();
     </script>
 </body>
 </html>
